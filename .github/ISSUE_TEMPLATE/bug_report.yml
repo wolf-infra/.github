@@ -1,0 +1,47 @@
+name: Bug Report
+description: File a bug report to help us improve
+title: "[BUG]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this behavior?
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / Error Messages
+      description: Please paste any relevant container logs or error messages.
+      render: shell
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Docker version, Architecture (e.g., Ubuntu 22.04, Docker 24.0, ARM64)
+    validations:
+      required: true

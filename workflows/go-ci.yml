@@ -1,0 +1,40 @@
+name: Go CI
+
+on:
+  workflow_call:
+    inputs:
+      go_version:
+        description: "The Go version to use"
+        required: false
+        type: string
+        default: "1.26.1"
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: ${{ inputs.go_version }}
+
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v9
+        with:
+          version: latest
+          args: --timeout=5m
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: ${{ inputs.go_version }}
+
+      - name: Run unit tests
+        run: go test -v -race ./...
